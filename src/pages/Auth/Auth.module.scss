@@ -1,0 +1,31 @@
+.auth {
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+  height: auto;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: [start] 1fr [end];
+
+  .email {
+    grid-column: start/end;
+    margin-bottom: 15px;
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .password {
+    grid-column: start/end;
+    margin-bottom: 15px;
+    input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  .btn {
+    justify-self: right;
+  }
+}

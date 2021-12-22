@@ -1,0 +1,16 @@
+.link {
+  font-weight: 700;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.notActive {
+  color: black;
+}
+
+.active {
+  color: blue;
+}
