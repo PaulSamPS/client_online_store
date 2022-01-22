@@ -1,0 +1,33 @@
+.product {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, 40px) auto;
+  justify-items: center;
+  gap: 10px;
+  .inputFile {
+    position: relative;
+    .file {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .inputBtn {
+      display: inline-block;
+
+      box-sizing: border-box;
+      padding: 10px 30px;
+      width: 227px;
+      background-color: var(--primary);
+      color: var(--white);
+
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+
+      border: none;
+      border-radius: 5px;
+
+      font-size: 14px;
+    }
+  }
+}

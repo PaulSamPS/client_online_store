@@ -1,0 +1,16 @@
+.admin {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  .nav {
+    display: grid;
+    width: 200px;
+    grid-template-rows: repeat(3, 30px);
+    a {
+      text-decoration: none;
+    }
+  }
+  .main {
+
+  }
+}

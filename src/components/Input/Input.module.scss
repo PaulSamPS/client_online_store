@@ -5,7 +5,7 @@
     padding: 7px 15px;
 
     color: var(--black);
-    border: 1px solid var(--gray-light);
+    border: 1px solid var(--gray);
     border-radius: 5px;
     outline-color: var(--primary);
     background: var(--white);
@@ -25,6 +25,7 @@
   }
 
   .errorMessage {
+    font-size: 14px;
     position: absolute;
     bottom: -20px;
     left: 0;

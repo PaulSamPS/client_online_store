@@ -1,29 +1,39 @@
-import React from 'react'
-import {Outlet } from 'react-router-dom'
-import {
-    ADMIN_ROUTE,
-    BASKET_ROUTE,
-    LOGIN_ROUTE,
-    PRODUCT_ROUTE,
-    REGISTRATION_ROUTE,
-    SHOP_ROUTE
-} from "../routes/constants";
-import CustomLink from "../components/CustomLink/CustomLink";
+import React, {useEffect, useState} from 'react'
+import {Outlet} from 'react-router-dom'
+import ModalLogin from "../components/ModalLogin/ModalLogin";
+import Header from "./Header/Header";
 import styles from './Layout.module.scss'
+import Sidebar from "./Sidebar/Sidebar";
+import {useAppDispatch} from "../hooks/useAppDispatch";
+import {getTypes} from "../redux/actions/typeAction";
+import Slider from "../components/Slider/Slider";
+import Shop from "../pages/Shop/Shop";
+import ProductCard from "../components/ProductCard/ProductCard";
 
 const Layout = () => {
+    const [modal, setModal] = useState<boolean>(false)
+
+    const openModal = () => {
+        setModal(true)
+    }
+
+    const closeModal = () => {
+        setModal(false)
+    }
+
     return (
-        <div className={styles.container}>
-            <header className={styles.nav}>
-                <CustomLink to={SHOP_ROUTE}>Магазин</CustomLink>
-                <CustomLink to={PRODUCT_ROUTE+'1'}>Продукт</CustomLink>
-                <CustomLink to={BASKET_ROUTE}>Корзина</CustomLink>
-                <CustomLink to={ADMIN_ROUTE}>Админ</CustomLink>
-                <CustomLink to={REGISTRATION_ROUTE}>Регистрация</CustomLink>
-                <CustomLink to={LOGIN_ROUTE}>Логин</CustomLink>
-            </header>
-            <Outlet />
-        </div>
+        <>
+            {modal && <ModalLogin closeModal={closeModal}/>}
+            <div className={styles.container}>
+                <Header openModal={openModal} className={styles.top}/>
+                <div className={styles.wrapper}>
+                    <Sidebar className={styles.sidebar}/>
+                    <div className={styles.body}>
+                        <Outlet />
+                    </div>
+                </div>
+            </div>
+        </>
     )
 }
 

@@ -1,0 +1,24 @@
+.filled {
+  svg {
+    fill: var(--primary);
+  }
+}
+
+.star {
+  svg {
+    margin-right: 5px;
+  }
+}
+
+.ratingBlock {
+  display: flex;
+  align-items: center;
+
+  span {
+    display: flex;
+  }
+}
+
+.editable {
+  cursor: pointer;
+}

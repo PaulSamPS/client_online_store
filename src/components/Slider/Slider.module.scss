@@ -1,0 +1,51 @@
+.sliderBlock {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  h2 {
+    font-size: 24px;
+    margin: 0;
+    padding-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .sliderWrapper {
+    display: flex;
+    width: 660px;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 300px;
+    position: relative;
+
+    &:hover {
+      button {
+        svg {
+          fill: var(--black);
+        }
+      }
+    }
+
+    .slider {
+      width: 660px;
+      text-align: center;
+      transition: all ease .5s;
+      height: 300px;
+
+      img {
+        height: 300px;
+        width: 660px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .bl {
+    display: flex;
+    bottom: -30px;
+    right: 270px;
+    position: absolute;
+    align-items: center;
+    height: 30px;
+  }
+}

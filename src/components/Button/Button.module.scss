@@ -12,15 +12,19 @@
   border-radius: 5px;
 
   font-size: 14px;
+
+  &:disabled {
+    background-color: var(--gray);
+  }
 }
 
 .primary {
   color: var(--white);
   background-color: var(--primary);
 
-  &:hover {
-    background-color: var(--primary-hover);
-  }
+  //&:hover {
+  //  filter: brightness(120%)
+  //}
 }
 
 .ghost {
@@ -30,6 +34,6 @@
 
   &:hover {
     color: var(--white);
-    background-color: var(--primary-hover);
+    background-color: var(--primary);
   }
 }

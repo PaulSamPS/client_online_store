@@ -1,0 +1,43 @@
+.type {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  transition: all ease .2s;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 15px;
+  white-space: nowrap;
+  position: relative;
+  padding: 12px 5px 12px 40px;
+  width: 70%;
+
+  &:hover {
+    background: var(--primary);
+    border-radius: 4px;
+
+    a {
+      color: var(--white);
+      .svg {
+        filter: brightness(100);
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    font-size: 15px;
+    .svg {
+      background-repeat: no-repeat;
+      background-position: 50%;
+      background-size: 16px auto;
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 35px;
+      height: 16px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 .link {
-  font-weight: 700;
+  font-size: 13px;
+  color: var(--black-light);
   margin-right: 10px;
 
   &:last-child {
@@ -8,9 +9,9 @@
 }
 
 .notActive {
-  color: black;
+  color: var(--black);
 }
 
 .active {
-  color: blue;
+  color: var(--primary);
 }

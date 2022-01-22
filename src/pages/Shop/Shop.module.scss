@@ -1,0 +1,27 @@
+.wrapper {
+  //display: grid;
+  //grid-template-columns: [start] 150px [mid] 1fr [end];
+  //grid-template-rows: 300px 1fr;
+  //gap: 40px 0 ;
+
+  .topBar {
+    display: flex;
+    justify-content: space-between;
+    width: 940px;
+    margin-bottom: 60px;
+  }
+
+  //.slider {
+  //  grid-column: mid / end;
+  //}
+  //
+  //h3 {
+  //  grid-column: mid / end;
+  //  margin: 0;
+  //}
+  //
+  //.topProduct {
+  //  grid-column: mid / end;
+  //  justify-self: left;
+  //}
+}

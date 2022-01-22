@@ -1,7 +1,18 @@
 .container {
-  max-width: 1000px;
+  width: 1200px;
+  height: 100vh;
   margin: 0 auto;
-  .nav {
-    text-align: center;
+
+  .wrapper {
+    margin-top: 20px;
+    display: flex;
+
+    .sidebar {
+      width: calc(1200px - 940px);
+    }
+  }
+
+  .body {
+    margin-right: 0;
   }
 }
