@@ -1,5 +1,4 @@
 import {SET_MENU} from '../constants/constants'
-import {IProduct} from "../actions/productAction";
 
 export interface IBrand {
     menu: any[]

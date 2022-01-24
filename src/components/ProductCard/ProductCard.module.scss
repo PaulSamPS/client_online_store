@@ -30,6 +30,27 @@
       max-height: 100%;
       max-width: 100%;
     }
+    .smart {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 50%;
+
+
+      span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 54px;
+        height: 54px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 500;
+      }
+    }
   }
 
   .block {
@@ -148,6 +169,12 @@
         color: #9d9d9d;
       }
     }
+  }
+
+  .btn {
+    height: 50px;
+    font-size: 16px;
+    font-weight: 600;
   }
 
   .like {

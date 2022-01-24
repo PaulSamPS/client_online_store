@@ -10,7 +10,7 @@ import Arrow from "../Arrow/Arrow";
 import Dots from "../Dots/Dots";
 
 const Slider = ({className}:SliderProps) => {
-    const p = useTypedSelector(state => state.product.product)
+    const p = useTypedSelector(state => state.product.tv)
     const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
 

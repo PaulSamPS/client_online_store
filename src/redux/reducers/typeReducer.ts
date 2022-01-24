@@ -1,5 +1,4 @@
-import {SET_BRAND, SET_PRODUCTS, SET_TYPE} from '../constants/constants'
-import {IProduct} from "../actions/productAction";
+import {SET_TYPE} from '../constants/constants'
 
 export interface IBrand {
     type: any[]

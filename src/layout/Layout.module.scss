@@ -6,9 +6,10 @@
   .wrapper {
     margin-top: 20px;
     display: flex;
+    gap: 10px;
 
     .sidebar {
-      width: calc(1200px - 940px);
+      width: calc(1200px - 950px);
     }
   }
 

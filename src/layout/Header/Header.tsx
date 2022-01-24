@@ -5,6 +5,7 @@ import {ReactComponent as UserLogo} from "./user.svg";
 import {ADMIN_ROUTE, CART_ROUTE, SHOP_ROUTE} from "../../routes/constants";
 import {ReactComponent as CartLogo} from "./cart.svg";
 import {ReactComponent as SearchLogo} from "./search.svg";
+import {ReactComponent as LogoIcon} from "./logo.svg";
 import {HeaderProps} from "./Header.props";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useNavigate} from "react-router-dom";
@@ -27,7 +28,7 @@ const Header = ({openModal}: HeaderProps) => {
     return (
         <div className={styles.header}>
             <img
-                src='https://static.eldorado.ru/static_spa/assets/logo.2.107e1872.svg'
+                src='https://static.eldorado.ru/espa/1.35.17-WtslTG2khlq9S4hFe2rsX/static_spa/assets/logo.0.107e1872.svg'
                 alt='logo'
                 className={styles.logo}
                 onClick={() => navigate(SHOP_ROUTE)}

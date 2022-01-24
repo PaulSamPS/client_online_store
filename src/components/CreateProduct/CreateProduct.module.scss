@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, 40px) auto;
-  justify-items: center;
   gap: 10px;
   .inputFile {
     position: relative;
@@ -30,4 +29,13 @@
       font-size: 14px;
     }
   }
+
+  .description {
+    display: flex;
+    gap: 30px;
+  }
+}
+
+.submit {
+  margin-top: 20px;
 }

@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import axios, {AxiosResponse} from "axios";
-import {Api, SET_BRAND, SET_MENU, SET_PRODUCTS, SET_TYPE} from "../constants/constants";
+import {Api, SET_BRAND, SET_MENU} from "../constants/constants";
 import {$authHost, $host} from "../../http";
 
 export const createType = (name: any) => {

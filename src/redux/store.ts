@@ -9,6 +9,7 @@ import {productReducer} from './reducers/productReducer'
 import {typeReducer} from "./reducers/typeReducer";
 import {brandReducer} from "./reducers/brandReducer";
 import {menuReducer} from "./reducers/menuReducer";
+import {oneTvReducer} from "./reducers/getOneProduct";
 
 const persistConfig = {
     key: 'root',
@@ -20,7 +21,8 @@ export const rootReducers = combineReducers({
     product: productReducer,
     type: typeReducer,
     brand: brandReducer,
-    menu: menuReducer
+    menu: menuReducer,
+    oneTv: oneTvReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducers)
