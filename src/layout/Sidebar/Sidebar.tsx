@@ -27,7 +27,7 @@ const Sidebar = ({className}: SidebarProps) => {
     //     {"id": 1, "name": "Смартфоны и гаджеты"},
     //     {"id": 2, "name": "Компьютеры и ноутбуки"},
     // ]
-    console.log(menu)
+    // console.log(menu)
     return (
         <div className={className}>
             {menu.map((t:Type) => <span key={t.id} className={styles.type}>

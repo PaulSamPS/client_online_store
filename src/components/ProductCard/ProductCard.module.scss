@@ -2,34 +2,60 @@
   display: grid;
   grid-template-areas:
     "img block priceBlock"
-    "img info priceBlock";
+    "img infoBlock priceBlock";
   grid-template-columns: 1fr minmax(200px,2.2fr) minmax(240px,1.8fr);
   grid-template-rows: max-content;
   padding-bottom: 24px;
   border-bottom: 1px solid #c4c4c4;
   padding-top: 10px;
   margin-bottom: 25px;
+  position: relative;
+
+  .dots {
+    position: absolute;
+    bottom: 20px;
+    left: 45px;
+  }
 
   .img {
     grid-area: img;
-    min-width: 180px;
     margin-right: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    text-align: center;
     margin-bottom: 20px;
+    min-width: 180px;
+    display: flex;
+    overflow-x: hidden;
 
-    img {
-      -webkit-object-fit: contain;
-      object-fit: contain;
-      -webkit-object-position: center;
-      object-position: center;
-      max-height: 100%;
-      max-width: 100%;
+
+    .imgSlide {
+      //height: 180px;
+      //width: 180px;
+      //display: flex;
+      //justify-content: center;
+      //align-items: center;
+      //cursor: pointer;
+      min-width: 180px;
+      max-width: 180px;
+      min-height: 180px;
+      max-height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+      margin-bottom: 20px;
+      overflow-x: hidden;
+
+      img {
+        object-fit: contain;
+        -webkit-object-position: center;
+        object-position: center;
+        max-height: 100%;
+        max-width: 100%;
+      }
     }
+
     .smart {
       position: absolute;
       top: 10px;
@@ -79,7 +105,7 @@
   }
 
   .infoBlock {
-    grid-area: info;
+    grid-area: infoBlock;
     margin-right: 50px;
 
     .info {

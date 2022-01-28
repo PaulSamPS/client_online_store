@@ -22,14 +22,14 @@ const TopProduct = ({className}: TopProductProps) => {
         {"id": 7, "img": "https://static.eldorado.ru/photos/71/715/762/25/new_71576225_l_1606735155.jpeg/resize/150x150/", "name": 'Ultra HD (4K) LED телевизор 55" Витязь 55LU1204 Smart', "price": 31999}
     ]
 
-    const left = () => {
+    const prevSlide = () => {
         setOffset((currentOffset) => {
             return Math.min(currentOffset + IMG_WIDTH, 0)
         })
         setSlideIndex(slideIndex === 0 ? 0 : slideIndex - 1)
     }
 
-    const right = () => {
+    const nextSlide = () => {
         if (slideIndex === phones.length - 4) {
             setSlideIndex(0)
             setOffset(0)
@@ -44,8 +44,8 @@ const TopProduct = ({className}: TopProductProps) => {
     return (
         <div className={cn(styles.wrapperSwipe, className)}>
             <h2>Рекомендуем вам</h2>
-            <Arrow appearance='left' background='white' onClick={left} className={styles.arrowLeft}/>
-            <Arrow appearance='right' background='white' onClick={right} className={styles.arrowRight}/>
+            <Arrow appearance='left' background='white' onClick={prevSlide} className={styles.arrowLeft}/>
+            <Arrow appearance='right' background='white' onClick={nextSlide} className={styles.arrowRight}/>
             <div className={styles.nav}>
                 <Button appearance='ghost' className={styles.btn}>Персональная подборка</Button>
                 <Button appearance='ghost' className={styles.btn}>Хиты продаж</Button>

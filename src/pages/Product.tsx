@@ -14,7 +14,7 @@ const Product = () => {
         dispatch(getOneTv(id))
     }, [id])
 
-    console.log(oneTv)
+    // console.log(oneTv)
     return (
         <div>
             <h1>Product {id}</h1>

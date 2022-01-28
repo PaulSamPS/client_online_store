@@ -3,6 +3,8 @@ import styles from './DayProduct.module.scss'
 import Arrow from "../Arrow/Arrow";
 import Dots from "../Dots/Dots";
 import CardItem from "../CardItem/CardItem";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useAppDispatch} from "../../hooks/useAppDispatch";
 
 const DayProduct = () => {
     const day = [
@@ -20,6 +22,8 @@ const DayProduct = () => {
     const [review, setReview] = useState<number>(4)
     const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
+    const tv = useTypedSelector(state => state.product.tv)
+    const dispatch = useAppDispatch()
     const IMG_WIDTH = 220
 
     const left = () => {

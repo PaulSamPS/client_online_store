@@ -22,7 +22,7 @@ const Dots = ({slideIndex,dots,arr,className,...props}: DotsProps) => {
     }
 
     return (
-        <div {...props} className={styles.dots}>
+        <div {...props} className={cn(styles.dots, className)}>
             {dotsArray.map((s, i) => <span key={i}>{s}</span>)}
         </div>
     );

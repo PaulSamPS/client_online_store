@@ -21,8 +21,6 @@ const Shop = () => {
         dispatch(getTv())
     }, [])
 
-    console.log(tv)
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.topBar}>

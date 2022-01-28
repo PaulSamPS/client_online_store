@@ -1,33 +1,77 @@
-import React, {useState} from 'react'
-import Rating from "../Rating/Rating";
-import Review from "../Review/Review";
-import styles from "./ProductCard.module.scss";
-import {priceRu} from "../../helpers/helpers";
-import {Button} from "../Button/Button";
-import {ReactComponent as FavoriteIconRed} from "../TopProduct/favoriteRed.svg";
-import {ReactComponent as FavoriteIcon} from "../TopProduct/favorite.svg";
-import {ProductCardProps} from "./ProductCard.props";
+import React, {useRef, useState} from 'react'
+import Rating from '../Rating/Rating'
+import Review from '../Review/Review'
+import styles from './ProductCard.module.scss'
+import {priceRu} from '../../helpers/helpers'
+import {Button} from '../Button/Button'
+import {ReactComponent as FavoriteIconRed} from '../TopProduct/favoriteRed.svg'
+import {ReactComponent as FavoriteIcon} from '../TopProduct/favorite.svg'
+import {ProductCardProps} from './ProductCard.props'
+import Dots from '../Dots/Dots'
+
 
 const ProductCard = ({tv}: ProductCardProps) => {
-    const [rating, setRating] = useState<number>(4)
     const [review, setReview] = useState<number>(4)
     const [like, setLike] = useState<boolean>(false)
     const [view, setView] = useState<boolean>(false)
+    const [images, setImages] = useState([])
     const [addToCart, setAddToCart] = useState<boolean>(false)
-    const image = JSON.parse(tv.img).map((i:any) => i.fileName)[0]
+    const image = JSON.parse(tv.img).map((i: any) => i)
+    const [offset, setOffset] = useState(0)
+    const [slideIndex, setSlideIndex] = useState(0)
+    const [mMove, serMMove] = useState(0)
+    const IMG_WIDTH = 180
+    const imgRef = useRef<HTMLImageElement>(null)
+
+    // console.log(image[2])
+
+
+    const dots = (index: number) => {
+        setSlideIndex(index)
+        setOffset(-(index * IMG_WIDTH))
+    }
+
+    const handleClick = (e: any) => {
+        const share = IMG_WIDTH / image.length
+        const target = imgRef?.current?.getBoundingClientRect()
+        let x = e.clientX - target!.left;
+
+        if (x >= 0 && x <= share){
+            setSlideIndex(0)
+        } else if (x > share && x <= IMG_WIDTH - share * 2) {
+            setSlideIndex(1)
+        } else if (x > 90 && x <= IMG_WIDTH - share) {
+            setSlideIndex(2)
+        } else if (x > 130 ){
+            setSlideIndex(3)
+        }
+
+
+        // if (slideIndex === (image.length - 1)) {
+        //     setSlideIndex(0)
+        // }
+        console.log(x)
+    }
+
     return (
         <div className={styles.productCard}>
             <div className={styles.img}>
-                <img
-                    src={`http://localhost:5000/${image}`}
-                    alt="product"
-                />
-                {tv.info.map((i: any) => i.title === 'Smart Tv' && i.description === 'Есть') &&
-                    <div className={styles.smart}>
+                <div className={styles.imgSlide} ref={imgRef as unknown as React.RefObject<HTMLImageElement>}>
+                    {/*style={{transform: `translateX(${offset}px)`}}*/}
+                    <img
+                        onMouseMove={(e: any) => handleClick(e)}
+                        // onMouseMove={(e:any) => e.currentTarget.src = `http://localhost:5000/${image}`}
+                        src={`http://localhost:5000/${image[slideIndex].fileName}`}
+                        alt="product"
+                    />
+                </div>
+                {tv.info.map((i: any) => i.title === "Smart TV" &&
+                    <div className={styles.smart} key={i.id}>
                         <span>Smart TV</span>
                     </div>
-                }
+                )}
             </div>
+            <Dots slideIndex={slideIndex} dots={dots} arr={JSON.parse(tv.img)} className={styles.dots}/>
             <div className={styles.block}>
                 <div className={styles.rating}>
                     <Rating rating={tv.rating} isEditable={false}/>
