@@ -38,24 +38,24 @@ const ProductCard = ({tv}: ProductCardProps) => {
 
         if (x >= 0 && x <= share){
             setSlideIndex(0)
-        } else if (x > share && x <= IMG_WIDTH - share * 2) {
+        } else if (x > share && x <= IMG_WIDTH - (share * 3)) {
             setSlideIndex(1)
-        } else if (x > 90 && x <= IMG_WIDTH - share) {
+        } else if (x > (share * 2) && x <= IMG_WIDTH - (share * 2)) {
             setSlideIndex(2)
-        } else if (x > 130 ){
+        } else if (x > (share * 3) && x <= IMG_WIDTH - share) {
             setSlideIndex(3)
+        } else {
+            setSlideIndex(4)
         }
+    }
 
-
-        // if (slideIndex === (image.length - 1)) {
-        //     setSlideIndex(0)
-        // }
-        console.log(x)
+    const leave = () => {
+        setSlideIndex(0)
     }
 
     return (
         <div className={styles.productCard}>
-            <div className={styles.img}>
+            <div className={styles.img} onMouseLeave={leave}>
                 <div className={styles.imgSlide} ref={imgRef as unknown as React.RefObject<HTMLImageElement>}>
                     {/*style={{transform: `translateX(${offset}px)`}}*/}
                     <img
