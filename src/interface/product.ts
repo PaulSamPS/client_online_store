@@ -4,4 +4,6 @@ export interface Product {
     price: number
     oldPrice?: number
     name: string
+    info: string[]
+    rating: number
 }

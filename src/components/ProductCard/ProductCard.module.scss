@@ -141,6 +141,15 @@
         text-align: end;
       }
     }
+
+    .showMore {
+      cursor: pointer;
+      transition: all ease .2s;
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
   }
 
   .productLeft {

@@ -21,7 +21,7 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
                 <div className={cn(styles.cardTopProduct, className)} style={{transform: `translateX(${offset}px)`}} {...props}>
                     <div className={styles.img}>
                         <img
-                            src={product.img}
+                            src={`http://localhost:5000/${product.img[0]}`}
                             alt="Продукт"
                         />
                     </div>

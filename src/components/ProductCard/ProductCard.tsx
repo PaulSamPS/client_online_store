@@ -16,52 +16,48 @@ const ProductCard = ({tv}: ProductCardProps) => {
     const [view, setView] = useState<boolean>(false)
     const [images, setImages] = useState([])
     const [addToCart, setAddToCart] = useState<boolean>(false)
-    const image = JSON.parse(tv.img).map((i: any) => i)
+    const image = JSON.parse(tv.img).map((i: any) => i).splice(0, 6)
     const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
     const [mMove, serMMove] = useState(0)
     const IMG_WIDTH = 180
     const imgRef = useRef<HTMLImageElement>(null)
 
-    // console.log(image[2])
-
-
     const dots = (index: number) => {
         setSlideIndex(index)
         setOffset(-(index * IMG_WIDTH))
     }
 
-    const handleClick = (e: any) => {
+    const mouseMove = (e: any) => {
         const share = IMG_WIDTH / image.length
         const target = imgRef?.current?.getBoundingClientRect()
-        let x = e.clientX - target!.left;
+        let x = e.clientX - target!.left
 
-        if (x >= 0 && x <= share){
+        if (x >= 0 && x <= share){ // 0-30
             setSlideIndex(0)
-        } else if (x > share && x <= IMG_WIDTH - (share * 3)) {
+        } else if (x > share && x <= IMG_WIDTH - (share * 4)) { //  30-60
             setSlideIndex(1)
-        } else if (x > (share * 2) && x <= IMG_WIDTH - (share * 2)) {
+        } else if (x > (share * 2) && x <= IMG_WIDTH - (share * 3)) { // 60-90
             setSlideIndex(2)
-        } else if (x > (share * 3) && x <= IMG_WIDTH - share) {
+        } else if (x > (share * 3) && x <= IMG_WIDTH - (share * 2)) { // 90-120
             setSlideIndex(3)
-        } else {
+        } else if (x > (share * 4) && x <= IMG_WIDTH - share) { // 120-150
             setSlideIndex(4)
+        } else {
+            setSlideIndex(5)
         }
     }
 
-    const leave = () => {
+    const mouseLeave = () => {
         setSlideIndex(0)
     }
 
     return (
         <div className={styles.productCard}>
-            <div className={styles.img} onMouseLeave={leave}>
+            <div className={styles.img} onMouseLeave={mouseLeave} onMouseMove={(e: any) => mouseMove(e)}>
                 <div className={styles.imgSlide} ref={imgRef as unknown as React.RefObject<HTMLImageElement>}>
-                    {/*style={{transform: `translateX(${offset}px)`}}*/}
                     <img
-                        onMouseMove={(e: any) => handleClick(e)}
-                        // onMouseMove={(e:any) => e.currentTarget.src = `http://localhost:5000/${image}`}
-                        src={`http://localhost:5000/${image[slideIndex].fileName}`}
+                        src={`http://localhost:5000/${JSON.parse(tv.img)[slideIndex].fileName}`}
                         alt="product"
                     />
                 </div>
@@ -71,7 +67,7 @@ const ProductCard = ({tv}: ProductCardProps) => {
                     </div>
                 )}
             </div>
-            <Dots slideIndex={slideIndex} dots={dots} arr={JSON.parse(tv.img)} className={styles.dots}/>
+            <Dots slideIndex={slideIndex} dots={dots} arr={JSON.parse(tv.img).splice(0, 6)} appearance='activeGreen' className={styles.dots}/>
             <div className={styles.block}>
                 <div className={styles.rating}>
                     <Rating rating={tv.rating} isEditable={false}/>
@@ -86,7 +82,7 @@ const ProductCard = ({tv}: ProductCardProps) => {
                         <span className={styles.infoAbout}>{i.description}</span>
                     </div>
                 )}
-                <span onClick={() => setView(!view)}>Показать ещё</span>
+                {tv.info.length > 6 && <span onClick={() => setView(!view)} className={styles.showMore}>Показать ещё</span>}
             </div>
             <div className={styles.productLeft}>
                 <div onClick={() => setLike(!like)} className={styles.like}>

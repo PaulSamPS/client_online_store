@@ -3,7 +3,7 @@ import styles from "./Dots.module.scss";
 import cn from "classnames";
 import {DotsProps} from "./Dots.props";
 
-const Dots = ({slideIndex,dots,arr,className,...props}: DotsProps) => {
+const Dots = ({slideIndex,appearance,dots,arr,className,...props}: DotsProps) => {
     const [dotsArray, setDotsArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
     useEffect(() => {
         constructDots(slideIndex)
@@ -13,7 +13,8 @@ const Dots = ({slideIndex,dots,arr,className,...props}: DotsProps) => {
             return (
                 <button onClick={() => dots(index)}>
                    <span className={cn(styles.dots, {
-                       [styles.active]: slideIndex === index
+                       [styles.active]: slideIndex === index,
+                       [styles.activeGreen]: slideIndex === index && appearance === 'activeGreen',
                    })}/>
                 </button>
             )

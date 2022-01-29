@@ -5,8 +5,9 @@ import Dots from "../Dots/Dots";
 import CardItem from "../CardItem/CardItem";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
+import {DayProductProps} from "./DayProduct.props";
 
-const DayProduct = () => {
+const DayProduct = ({tv}: DayProductProps) => {
     const day = [
         {"id": 0, "img": "https://static.eldorado.ru/photos/mv/Big/30059742bb1.jpg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999, 'oldPrice': 55999},
         {"id": 1, "img": "https://static.eldorado.ru/photos/71/715/665/96/new_71566596_l_1605093913.jpeg/resize/150x150/", "name": 'Смартфон Apple iPhone 11 128GB Black', "price": 25999, 'oldPrice': 55999},
@@ -22,8 +23,6 @@ const DayProduct = () => {
     const [review, setReview] = useState<number>(4)
     const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
-    const tv = useTypedSelector(state => state.product.tv)
-    const dispatch = useAppDispatch()
     const IMG_WIDTH = 220
 
     const left = () => {
@@ -49,12 +48,12 @@ const DayProduct = () => {
         setSlideIndex(index)
         setOffset(-(index * IMG_WIDTH))
     }
-
+    console.log(tv)
     return (
         <div className={styles.dayProductBlock}>
             <h2>Товары дня</h2>
             <div className={styles.wrapper}>
-                {day.map((p: any) =>
+                {tv.map((p: any) =>
                     <CardItem key={p.id} product={p} appearance='dayProduct' offset={offset}/>
                 )}
                 <Arrow appearance='left' background='white' onClick={left}/>

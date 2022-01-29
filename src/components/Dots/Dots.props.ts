@@ -4,4 +4,5 @@ export interface DotsProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivEleme
     slideIndex: number
     dots: (dots: number) => void
     arr: any[]
+    appearance?: 'activeGreen'
 }

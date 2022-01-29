@@ -25,7 +25,7 @@ const Shop = () => {
         <div className={styles.wrapper}>
             <div className={styles.topBar}>
                 <Slider className={styles.slider}/>
-                <DayProduct/>
+                <DayProduct tv={tv}/>
             </div>
             <TopProduct className={styles.topProduct}/>
             {tv.map((t : any) => <ProductCard key={t.id} tv={t}/>)}

@@ -19,5 +19,10 @@
       background: var(--black);
       padding: 3px;
     }
+
+    .active {
+      background: var(--primary);
+      padding: 3px;
+    }
   }
 }
