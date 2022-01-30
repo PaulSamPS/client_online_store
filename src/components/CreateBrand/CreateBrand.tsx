@@ -3,7 +3,9 @@ import {Input} from "../Input/Input";
 import {Button} from "../Button/Button";
 import {useForm} from "react-hook-form";
 import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {brand} from "../../redux/actions/brandAction";
+import {brand} from "../../redux/actions/brandAction"
+import styles from './CreateBrand.module.scss'
+
 
 const CreateBrand = () => {
     const dispatch:any = useAppDispatch()
@@ -14,11 +16,12 @@ const CreateBrand = () => {
     }
 
     return (
-        <form >
+        <form className={styles.brand}>
+            <h2>Добавить бренд</h2>
             <Input
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder='Brand'
+                placeholder='Название бренда'
                 type='text'
             />
             <Button appearance="primary" onClick={addBrand}>Добавить</Button>

@@ -6,21 +6,10 @@ import cn from "classnames";
 import Arrow from "../Arrow/Arrow";
 import CardItem from "../CardItem/CardItem";
 
-const TopProduct = ({className}: TopProductProps) => {
+const TopProduct = ({className, tv}: TopProductProps) => {
     const IMG_WIDTH = 235
     const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
-
-    const phones = [
-        {"id": 0, "img": "https://static.eldorado.ru/photos/mv/Big/30059742bb1.jpg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999},
-        {"id": 1, "img": "https://static.eldorado.ru/photos/71/715/665/96/new_71566596_l_1605093913.jpeg/resize/150x150/", "name": 'Смартфон Apple iPhone 11 128GB Black', "price": 54999},
-        {"id": 2, "img": "https://static.eldorado.ru/photos/71/715/117/62/new_71511762_l_1554719994.jpeg/resize/150x150/", "name": 'Ultra HD (4K) LED телевизор 55" Витязь 55LU1204 Smart', "price": 31999},
-        {"id": 3, "img": "https://static.eldorado.ru/photos/71/715/155/74/new_71515574_l_1559570348.jpeg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999},
-        {"id": 4, "img": "https://static.eldorado.ru/photos/mv/Big/20076053bb.jpg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999},
-        {"id": 5, "img": "https://static.eldorado.ru/photos/mv/Big/10027508bb.jpg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999},
-        {"id": 6, "img": "https://static.eldorado.ru/photos/71/715/172/58/new_71517258_l_1562666357.jpeg/resize/150x150/", "name": 'Смартфон Honor 50 Lite 6+128GB Deep Sea Blue (NTN-LX1)', "price": 29999},
-        {"id": 7, "img": "https://static.eldorado.ru/photos/71/715/762/25/new_71576225_l_1606735155.jpeg/resize/150x150/", "name": 'Ultra HD (4K) LED телевизор 55" Витязь 55LU1204 Smart', "price": 31999}
-    ]
 
     const prevSlide = () => {
         setOffset((currentOffset) => {
@@ -30,12 +19,12 @@ const TopProduct = ({className}: TopProductProps) => {
     }
 
     const nextSlide = () => {
-        if (slideIndex === phones.length - 4) {
+        if (slideIndex === tv.length - 4) {
             setSlideIndex(0)
             setOffset(0)
         } else {
             setOffset((currentOffset) => {
-                return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (phones.length - 4)))
+                return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (tv.length - 4)))
             })
             setSlideIndex(slideIndex + 1)
         }
@@ -53,7 +42,7 @@ const TopProduct = ({className}: TopProductProps) => {
             </div>
             <div className={styles.cardBlock}>
                 <div className={styles.cardGrid}>
-                    {phones.map((p: any, index: number) =>
+                    {tv.map((p: any) =>
                         <CardItem key={p.id} product={p} offset={offset} appearance='topProduct'/>
                     )}
                 </div>

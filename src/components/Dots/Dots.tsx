@@ -8,6 +8,7 @@ const Dots = ({slideIndex,appearance,dots,arr,className,...props}: DotsProps) =>
     useEffect(() => {
         constructDots(slideIndex)
     },[slideIndex])
+
     const constructDots = (slideIndex: number) => {
         const updateDots = arr.map((s: JSX.Element,index) => {
             return (

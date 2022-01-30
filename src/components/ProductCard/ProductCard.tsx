@@ -9,23 +9,18 @@ import {ReactComponent as FavoriteIcon} from '../TopProduct/favorite.svg'
 import {ProductCardProps} from './ProductCard.props'
 import Dots from '../Dots/Dots'
 
-
 const ProductCard = ({tv}: ProductCardProps) => {
     const [review, setReview] = useState<number>(4)
     const [like, setLike] = useState<boolean>(false)
     const [view, setView] = useState<boolean>(false)
-    const [images, setImages] = useState([])
     const [addToCart, setAddToCart] = useState<boolean>(false)
     const image = JSON.parse(tv.img).map((i: any) => i).splice(0, 6)
-    const [offset, setOffset] = useState(0)
     const [slideIndex, setSlideIndex] = useState(0)
-    const [mMove, serMMove] = useState(0)
     const IMG_WIDTH = 180
     const imgRef = useRef<HTMLImageElement>(null)
 
     const dots = (index: number) => {
         setSlideIndex(index)
-        setOffset(-(index * IMG_WIDTH))
     }
 
     const mouseMove = (e: any) => {
@@ -57,7 +52,7 @@ const ProductCard = ({tv}: ProductCardProps) => {
             <div className={styles.img} onMouseLeave={mouseLeave} onMouseMove={(e: any) => mouseMove(e)}>
                 <div className={styles.imgSlide} ref={imgRef as unknown as React.RefObject<HTMLImageElement>}>
                     <img
-                        src={`http://localhost:5000/${JSON.parse(tv.img)[slideIndex].fileName}`}
+                        src={`http://localhost:5000/${JSON.parse(tv.img)[slideIndex]?.fileName}`}
                         alt="product"
                     />
                 </div>

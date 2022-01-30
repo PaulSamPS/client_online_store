@@ -1,5 +1,5 @@
 import {CREATE_BRAND_ROUTE, CREATE_PRODUCT_ROUTE, CREATE_TYPE_ROUTE} from "./constants";
-import CreateBrand from "../../components/AddBrand/CreateBrand";
+import CreateBrand from "../../components/CreateBrand/CreateBrand";
 import CreateType from "../../components/CreateType/CreateType";
 import CreateProduct from "../../components/CreateProduct/CreateProduct";
 

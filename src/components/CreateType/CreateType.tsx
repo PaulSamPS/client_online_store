@@ -16,11 +16,12 @@ const CreateType = () => {
     }
 
     return (
-        <form >
+        <form className={styles.type}>
+            <h2>Добавить тип</h2>
             <Input
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
-                placeholder='Type'
+                placeholder='Название типа'
                 type='text'
                 className={styles.input}
             />

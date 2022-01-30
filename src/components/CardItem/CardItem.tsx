@@ -14,14 +14,13 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
     const [rating, setRating] = useState<number>(4)
     const [review, setReview] = useState<number>(4)
     const [like, setLike] = useState<boolean>(false)
-
     return (
         <>
             {appearance === 'topProduct' &&
                 <div className={cn(styles.cardTopProduct, className)} style={{transform: `translateX(${offset}px)`}} {...props}>
                     <div className={styles.img}>
                         <img
-                            src={`http://localhost:5000/${product.img[0]}`}
+                            src={`http://localhost:5000/${JSON.parse(product.img)[0].fileName}`}
                             alt="Продукт"
                         />
                     </div>
@@ -43,7 +42,7 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
                 <div className={styles.cardDayProduct} style={{transform: `translateX(${offset}px)`}}>
                     <div className={styles.img}>
                         <img
-                            src={product.img}
+                            src={`http://localhost:5000/${JSON.parse(product.img)[0].fileName}`}
                             alt="product"
                         />
                     </div>
@@ -55,7 +54,7 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
                         <Rating rating={rating} isEditable={false}/>
                         <Review review={review}/>
                     </div>
-                    <span className={styles.name}>Монитор Samsung S32AM500NI</span>
+                    <span className={styles.name}>{product.name}</span>
                     <div className={styles.sale}>
                         <span className={styles.oldPrice}>{priceRu(product.oldPrice)}</span>
                         <span className={styles.discount}>-{product.oldPrice! - product.price}</span>

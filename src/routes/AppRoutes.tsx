@@ -13,7 +13,7 @@ import PrivateAuth from '../hoc/PrivateAuth'
 import Admin from "../pages/Admin/Admin";
 import {CREATE_BRAND_ROUTE, CREATE_PRODUCT_ROUTE, CREATE_TYPE_ROUTE} from "./AdminRoutes/constants";
 import CreateType from "../components/CreateType/CreateType";
-import CreateBrand from "../components/AddBrand/CreateBrand";
+import CreateBrand from "../components/CreateBrand/CreateBrand";
 import CreateProduct from "../components/CreateProduct/CreateProduct";
 import Shop from "../pages/Shop/Shop";
 import Product from "../pages/Product";

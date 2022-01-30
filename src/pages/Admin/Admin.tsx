@@ -1,4 +1,4 @@
-import CreateBrand from "../../components/AddBrand/CreateBrand";
+import CreateBrand from "../../components/CreateBrand/CreateBrand";
 import CreateType from "../../components/CreateType/CreateType";
 import CreateProduct from "../../components/CreateProduct/CreateProduct";
 import CustomLink from "../../components/CustomLink/CustomLink";
