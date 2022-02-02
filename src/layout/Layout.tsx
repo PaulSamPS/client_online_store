@@ -9,9 +9,17 @@ import {getTypes} from "../redux/actions/typeAction";
 import Slider from "../components/Slider/Slider";
 import Shop from "../pages/Shop/Shop";
 import ProductCard from "../components/ProductCard/ProductCard";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {getMenu} from "../redux/actions/menuAction";
 
 const Layout = () => {
     const [modal, setModal] = useState<boolean>(false)
+    const {menu} = useTypedSelector(state => state.menu)
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getMenu())
+    },[])
 
     const openModal = () => {
         setModal(true)
@@ -27,7 +35,7 @@ const Layout = () => {
             <div className={styles.container}>
                 <Header openModal={openModal} className={styles.top}/>
                 <div className={styles.wrapper}>
-                    <Sidebar className={styles.sidebar}/>
+                    <Sidebar className={styles.sidebar} menu={menu}/>
                     <div className={styles.body}>
                         <Outlet />
                     </div>

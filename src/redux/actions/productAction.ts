@@ -1,41 +1,26 @@
-import {Dispatch} from "redux";
-import {$authHost, $host} from "../../http";
-import {Api, SET_ONE_TV, SET_TV} from "../constants/constants";
-import axios from "axios";
+import {Dispatch} from 'redux'
+import {$authHost, $host} from '../../http'
+import {Api, SET_ONE_PRODUCT, SET_PRODUCTS,} from '../constants/constants'
+import {IProduct} from '../../interfaces/product.interface'
+import axios from 'axios'
 
-export interface ITv {
-    brandId: number
-    createdAt: string
-    id: number
-    img: string[]
-    name: string
-    price: number
-    oldPrice: number
-    rating: number
-    typeId: number
-    updatedAt: string
-    info: string[]
-}
-
-export const getTv = () => {
+export const getProducts = () => {
     return async (dispatch: Dispatch) => {
-        const res = await axios.get<ITv[]>(Api + 'tv')
-        dispatch(setTv(res.data))
+        const res = await axios.get<IProduct[]>(Api + 'product')
+        dispatch(setProducts(res.data))
     }
 }
 
-export const getOneTv = (id: string | undefined) => {
+export const getOneProduct = (id: string | undefined) => {
     return async (dispatch: Dispatch) => {
-        const res = await axios.get<ITv[]>(Api + `tv/${id}`)
-        dispatch(setOneTv(res.data))
+        const res = await axios.get<IProduct[]>(Api + `product/${id}`)
+        dispatch(setOneProduct(res.data))
     }
 }
 
-export const addTv = (formData: any) => {
-    return async (dispatch: Dispatch) => {
-        await $authHost.post(Api + 'tv', formData)
-    }
+export const addProduct = async (formData: any) => {
+    return await $authHost.post<IProduct[]>(Api + 'product', formData)
 }
 
-export const setTv = (tv: ITv[]) => ({type: SET_TV, payload: tv})
-export const setOneTv = (oneTv: ITv[]) => ({type: SET_ONE_TV, payload: oneTv})
+export const setProducts = (products: IProduct[]) => ({type: SET_PRODUCTS, payload: products})
+export const setOneProduct = (oneProduct: IProduct[]) => ({type: SET_ONE_PRODUCT, payload: oneProduct})

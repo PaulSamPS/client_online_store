@@ -1,19 +1,20 @@
 import React, {useState} from 'react'
-import styles from "./CardItem.module.scss";
-import Rating from "../Rating/Rating";
-import Review from "../Review/Review";
-import {priceRu} from "../../helpers/helpers";
-import {Button} from "../Button/Button";
-import {ReactComponent as FavoriteIconRed} from "../TopProduct/favoriteRed.svg";
-import {ReactComponent as FavoriteIcon} from "../TopProduct/favorite.svg";
-import {CardItemProps} from "./CardItem.props";
-import cn from "classnames";
-import {ReactComponent as CartLogo} from "../DayProduct/cart.svg";
+import Rating from '../Rating/Rating'
+import Review from '../Review/Review'
+import {priceRu} from '../../helpers/helpers'
+import {Button} from '../Button/Button'
+import {ReactComponent as FavoriteIconRed} from '../TopProduct/favoriteRed.svg'
+import {ReactComponent as FavoriteIcon} from '../TopProduct/favorite.svg'
+import {CardItemProps} from './CardItem.props'
+import cn from 'classnames'
+import {ReactComponent as CartLogo} from '../DayProduct/cart.svg'
+import styles from './CardItem.module.scss'
 
-const CardItem = ({className,product,appearance,offset,...props}: CardItemProps) => {
+const CardItem = ({className,product,appearance,offset,...props}: CardItemProps): JSX.Element => {
     const [rating, setRating] = useState<number>(4)
     const [review, setReview] = useState<number>(4)
     const [like, setLike] = useState<boolean>(false)
+
     return (
         <>
             {appearance === 'topProduct' &&

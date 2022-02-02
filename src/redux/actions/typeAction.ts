@@ -1,12 +1,10 @@
-import {Dispatch} from "redux";
-import axios, {AxiosResponse} from "axios";
-import {Api, SET_BRAND,SET_TYPE} from "../constants/constants";
-import {$authHost, $host} from "../../http";
+import {Dispatch} from 'redux'
+import {Api,SET_TYPES} from '../constants/constants'
+import {$authHost, $host} from '../../http'
+import {IType} from "../../interfaces/type.interface";
 
-export const createType = (name: any) => {
-    return async (dispatch: Dispatch) => {
-        await $authHost.post(Api + 'type', name)
-    }
+export const createType = async (name: any) => {
+    return await $authHost.post(Api + 'type', name)
 }
 
 export const getTypes = () => {
@@ -16,4 +14,4 @@ export const getTypes = () => {
     }
 }
 
-export const setTypes = (types: []) => ({type: SET_TYPE, payload: types})
+export const setTypes = (types: []) => ({type: SET_TYPES, payload: types})

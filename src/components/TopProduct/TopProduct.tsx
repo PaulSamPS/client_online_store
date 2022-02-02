@@ -1,30 +1,31 @@
-import React, {useState} from 'react';
-import styles from "./TopProduct.module.scss";
-import {Button} from "../Button/Button";
-import {TopProductProps} from "./TopProduct.props";
-import cn from "classnames";
-import Arrow from "../Arrow/Arrow";
-import CardItem from "../CardItem/CardItem";
+import React, {useState} from 'react'
+import {Button} from '../Button/Button'
+import {TopProductProps} from './TopProduct.props'
+import cn from 'classnames'
+import Arrow from '../Arrow/Arrow'
+import CardItem from '../CardItem/CardItem'
+import {IProduct} from '../../interfaces/product.interface'
+import styles from './TopProduct.module.scss'
 
-const TopProduct = ({className, tv}: TopProductProps) => {
+const TopProduct = ({className, product}: TopProductProps): JSX.Element => {
+    const [offset, setOffset] = useState<number>(0)
+    const [slideIndex, setSlideIndex] = useState<number>(0)
     const IMG_WIDTH = 235
-    const [offset, setOffset] = useState(0)
-    const [slideIndex, setSlideIndex] = useState(0)
 
     const prevSlide = () => {
-        setOffset((currentOffset) => {
+        setOffset((currentOffset: number) => {
             return Math.min(currentOffset + IMG_WIDTH, 0)
         })
         setSlideIndex(slideIndex === 0 ? 0 : slideIndex - 1)
     }
 
     const nextSlide = () => {
-        if (slideIndex === tv.length - 4) {
+        if (slideIndex === product.length - 4) {
             setSlideIndex(0)
             setOffset(0)
         } else {
-            setOffset((currentOffset) => {
-                return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (tv.length - 4)))
+            setOffset((currentOffset: number) => {
+                return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (product.length - 4)))
             })
             setSlideIndex(slideIndex + 1)
         }
@@ -42,8 +43,8 @@ const TopProduct = ({className, tv}: TopProductProps) => {
             </div>
             <div className={styles.cardBlock}>
                 <div className={styles.cardGrid}>
-                    {tv.map((p: any) =>
-                        <CardItem key={p.id} product={p} offset={offset} appearance='topProduct'/>
+                    {product.map((product: IProduct) =>
+                        <CardItem key={product.id} product={product} offset={offset} appearance='topProduct'/>
                     )}
                 </div>
             </div>

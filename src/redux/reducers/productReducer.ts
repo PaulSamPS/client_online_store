@@ -1,41 +1,28 @@
-import {SET_ONE_TV, SET_TV} from '../constants/constants'
-import {ITv} from "../actions/productAction";
+import {SET_ONE_PRODUCT, SET_PRODUCTS} from '../constants/constants'
+import {IProduct} from '../../interfaces/product.interface'
 
-export interface IProd {
-    tv: ITv[]
-    oneTv: any []
+interface IReduxProduct {
+    products: IProduct[]
+    oneProduct: any []
 }
 
-export interface IOneTv {
-    name: string
-    id: number
-    img: string
-    price: number
-    oldPrice: number
-    title: string
-    description: string
-    typeId: number
-    deviceId: number
-    tvId: number
-}
-
-const initialState: IProd = {
-    tv: [],
-    oneTv: []
+const initialState: IReduxProduct = {
+    products: [],
+    oneProduct: []
 }
 
 export const productReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case SET_TV:
+        case SET_PRODUCTS:
             return {
                 ...state,
-                tv: action.payload,
-                oneTv: []
+                products: action.payload,
+                oneProduct: []
             }
-        case SET_ONE_TV:
+        case SET_ONE_PRODUCT:
             return {
                 ...state,
-                oneTv: action.payload
+                oneProduct: action.payload
             }
         default:
             return state

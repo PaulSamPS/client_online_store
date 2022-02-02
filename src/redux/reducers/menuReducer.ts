@@ -1,10 +1,7 @@
 import {SET_MENU} from '../constants/constants'
+import {IReduxMenu} from '../../interfaces/menu.interface'
 
-export interface IBrand {
-    menu: any[]
-}
-
-const initialState: IBrand = {
+const initialState: IReduxMenu = {
     menu: []
 }
 

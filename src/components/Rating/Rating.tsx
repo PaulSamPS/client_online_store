@@ -1,10 +1,10 @@
 import React, {useEffect, useState, KeyboardEvent} from 'react'
 import {RatingProps} from './Rating.props'
 import {ReactComponent as StarIcon} from './star.svg'
-import styles from './Rating.module.scss'
 import cn from 'classnames'
+import styles from './Rating.module.scss'
 
-const Rating = ({isEditable = false, rating, setRating, className, ...props}: RatingProps) => {
+const Rating = ({isEditable = false, rating, setRating, className, ...props}: RatingProps): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
 
     useEffect(() => {
@@ -12,20 +12,19 @@ const Rating = ({isEditable = false, rating, setRating, className, ...props}: Ra
     },[rating])
 
     const constructRating = (currentRating: number) => {
-        const updatedArray = ratingArray.map((r: JSX.Element, i: number) => {
+        const updatedArray = ratingArray.map((r: JSX.Element, index: number) => {
             return (
                 <span
                     className={cn(styles.star, {
-                        [styles.filled]: i < currentRating,
+                        [styles.filled]: index < currentRating,
                         [styles.editable]: isEditable
                     })}
-                    onMouseEnter={() => changeDisplay(i + 1)}
+                    onMouseEnter={() => changeDisplay(index + 1)}
                     onMouseLeave={() => changeDisplay(rating)}
-                    onClick={() => onClick(i + 1)}
-                    // tabIndex={isEditable ? 0 : -1}
+                    onClick={() => onClick(index + 1)}
                 >
                     <StarIcon
-                        onKeyDown={(e: KeyboardEvent<SVGElement>) => isEditable && handleSpace(i + 1, e)}
+                        onKeyDown={(e: KeyboardEvent<SVGElement>) => isEditable && handleSpace(index + 1, e)}
                     />
                 </span>
             )
@@ -33,32 +32,32 @@ const Rating = ({isEditable = false, rating, setRating, className, ...props}: Ra
         setRatingArray(updatedArray)
     }
 
-    const changeDisplay = (i: number) => {
+    const changeDisplay = (index: number) => {
         if (!isEditable) {
             return
         }
-        constructRating(i)
+        constructRating(index)
     }
 
-    const onClick = (i: number) => {
+    const onClick = (index: number) => {
         if (!isEditable || !setRating) {
             return
         }
-        setRating(i)
+        setRating(index)
     }
 
-    const handleSpace = (i: number, e: KeyboardEvent<SVGElement>) => {
+    const handleSpace = (index: number, e: KeyboardEvent<SVGElement>) => {
         if (e.code != 'Space'|| !setRating) {
             return
         }
-        setRating(i)
+        setRating(index)
     }
 
     return (
         <div {...props}>
             {isEditable
                 ?
-                    ratingArray.map((r,i) => <span key={i}>{r}</span>)
+                    ratingArray.map((rating,index) => <span key={index}>{rating}</span>)
                 :
                     <div className={styles.ratingBlock}>
                         <span>{ratingArray[0]}</span>

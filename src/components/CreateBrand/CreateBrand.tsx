@@ -1,18 +1,17 @@
 import React, {useState} from 'react'
-import {Input} from "../Input/Input";
-import {Button} from "../Button/Button";
-import {useForm} from "react-hook-form";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {brand} from "../../redux/actions/brandAction"
+import {Input} from '../Input/Input'
+import {Button} from '../Button/Button'
+import {useAppDispatch} from '../../hooks/useAppDispatch'
+import {createBrand} from '../../redux/actions/brandAction'
 import styles from './CreateBrand.module.scss'
 
 
-const CreateBrand = () => {
-    const dispatch:any = useAppDispatch()
+const CreateBrand = (): JSX.Element => {
     const [value,setValue] = useState('')
+    const dispatch:any = useAppDispatch()
 
     const addBrand= () => {
-        dispatch(brand({name: value})).then(() => setValue(''))
+        dispatch(createBrand({name: value})).then(() => setValue(''))
     }
 
     return (

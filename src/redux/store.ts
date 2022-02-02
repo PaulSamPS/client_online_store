@@ -1,15 +1,13 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux'
 import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
-
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import {userReducer} from './reducers/userReducer'
 import {productReducer} from './reducers/productReducer'
-import {typeReducer} from "./reducers/typeReducer";
-import {brandReducer} from "./reducers/brandReducer";
-import {menuReducer} from "./reducers/menuReducer";
-import {oneTvReducer} from "./reducers/getOneProduct";
+import {typeReducer} from './reducers/typeReducer'
+import {brandReducer} from './reducers/brandReducer'
+import {menuReducer} from './reducers/menuReducer'
 
 const persistConfig = {
     key: 'root',
@@ -21,8 +19,7 @@ export const rootReducers = combineReducers({
     product: productReducer,
     type: typeReducer,
     brand: brandReducer,
-    menu: menuReducer,
-    oneTv: oneTvReducer
+    menu: menuReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducers)

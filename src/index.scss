@@ -1,19 +1,10 @@
 body {
   margin: 0;
-  //font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  //  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  //  sans-serif;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #ffffff;
   min-height: 100vh;
-}
-
-code {
-  //font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-  //  monospace;
-  font-family: 'Source Sans Pro', sans-serif;
 }
 
 :root {
@@ -23,5 +14,4 @@ code {
   --gray: #c4c4c4;
   --primary: #76bc21;
   --red: #DE1F1C;
-  --font-family: 'Noto Sans Display', sans-serif;
 }

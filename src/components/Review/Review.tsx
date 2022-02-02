@@ -1,9 +1,10 @@
 import React from 'react'
 import {ReactComponent as ReviewIcon} from './review.svg'
+import {ReviewProps} from './Review.props'
 import styles from './Review.module.scss'
-import {ReviewProps} from "./Review.props";
 
-const Review = ({review, children,className,...props}: ReviewProps) => {
+const Review = ({review, children,className,...props}: ReviewProps): JSX.Element => {
+
     return (
         <div {...props} className={styles.review}>
             <ReviewIcon className={styles.reviewIcon}/>
@@ -18,4 +19,4 @@ const Review = ({review, children,className,...props}: ReviewProps) => {
     )
 }
 
-export default Review;
+export default Review

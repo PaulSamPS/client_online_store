@@ -3,9 +3,9 @@ import axios, {AxiosResponse} from "axios";
 import {Api, SET_BRAND, SET_MENU} from "../constants/constants";
 import {$authHost, $host} from "../../http";
 
-export const createType = (name: any) => {
+export const addMenu = (formData: any) => {
     return async (dispatch: Dispatch) => {
-        await $authHost.post(Api + 'type', name)
+        await $authHost.post(Api + 'menu', formData)
     }
 }
 

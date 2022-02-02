@@ -1,16 +1,13 @@
-import {SET_TYPE} from '../constants/constants'
+import {SET_TYPES} from '../constants/constants'
+import {IReduxType} from '../../interfaces/type.interface'
 
-export interface IBrand {
-    type: any[]
-}
-
-const initialState: IBrand = {
+const initialState: IReduxType = {
     type: []
 }
 
 export const typeReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case SET_TYPE:
+        case SET_TYPES:
             return {
                 ...state,
                 type: action.payload

@@ -1,12 +1,9 @@
-import {Dispatch} from "redux";
-import axios, {AxiosResponse} from "axios";
-import {Api, SET_BRAND, SET_TYPE} from "../constants/constants";
-import {$authHost, $host} from "../../http";
+import {Dispatch} from 'redux'
+import {Api, SET_BRAND} from '../constants/constants'
+import {$authHost, $host} from '../../http'
 
-export const brand = (name: any) => {
-    return async (dispatch: Dispatch) => {
-        await $authHost.post(Api + 'brand', name)
-    }
+export const createBrand = async (name: any) => {
+    return await $authHost.post(Api + 'brand', name)
 }
 
 export const getBrands = () => {
@@ -16,4 +13,4 @@ export const getBrands = () => {
     }
 }
 
-export const setBrands = (types: []) => ({type: SET_BRAND, payload: types})
+export const setBrands = (brands: []) => ({type: SET_BRAND, payload: brands})

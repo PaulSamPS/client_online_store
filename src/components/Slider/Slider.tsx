@@ -1,18 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import styles from './Slider.module.scss';
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {ReactComponent as ArrowIcon} from "./arrow.svg";
-import {Link, useNavigate} from "react-router-dom";
-import cn from "classnames";
-import {SliderProps} from "./Slider.props";
-import Arrow from "../Arrow/Arrow";
-import Dots from "../Dots/Dots";
+import React, {useEffect, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom'
+import cn from 'classnames'
+import {SliderProps} from './Slider.props'
+import Arrow from '../Arrow/Arrow'
+import Dots from '../Dots/Dots'
+import styles from './Slider.module.scss'
 
 const Slider = ({className}:SliderProps) => {
-    const p = useTypedSelector(state => state.product.tv)
-    const [offset, setOffset] = useState(0)
-    const [slideIndex, setSlideIndex] = useState(0)
+    const [offset, setOffset] = useState<number>(0)
+    const [slideIndex, setSlideIndex] = useState<number>(0)
+    const IMG_WIDTH = 660
 
     const sliderTop = [
             {"id": 0, "img": "https://static.eldorado.ru/upload/newbx/a9f/a9f9907b6fef0b52093a5cba8b5b1302.png/resize/660x300/", "type": 'cart'},
@@ -22,11 +19,9 @@ const Slider = ({className}:SliderProps) => {
             {"id": 4, "img": "https://static.eldorado.ru/upload/newbx/b18/b1841bda587934660e832f28d1cdb69e.png/resize/660x300/", "type": 'cart'}
     ]
 
-    const IMG_WIDTH = 660
-
     useEffect(() => {
         const interval = setInterval(() => {
-            setOffset((currentOffset) => {
+            setOffset((currentOffset: number) => {
                 return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (sliderTop.length - 1)))
             })
             setSlideIndex(slideIndex => slideIndex +1)
@@ -44,7 +39,7 @@ const Slider = ({className}:SliderProps) => {
             setSlideIndex(0)
             setOffset(0)
         } else {
-            setOffset((currentOffset) => {
+            setOffset((currentOffset: number) => {
                 return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (sliderTop.length - 1)))
             })
             setSlideIndex(slideIndex + 1)
@@ -52,13 +47,13 @@ const Slider = ({className}:SliderProps) => {
     }
 
     const left = () => {
-        setOffset((currentOffset) => {
+        setOffset((currentOffset: number) => {
             return Math.min(currentOffset + IMG_WIDTH, 0)
         })
         setSlideIndex(slideIndex === 0 ? 0 : slideIndex - 1)
     }
 
-    const dots = (index: any) => {
+    const dots = (index: number) => {
         setSlideIndex(index)
         setOffset(-(index * IMG_WIDTH))
     }
@@ -82,11 +77,6 @@ const Slider = ({className}:SliderProps) => {
                <Arrow appearance='right' background='white' onClick={right}/>
            </div>
            <div className={styles.bl}>
-               {/*{sliderTop.map((s:any,index) => <button onClick={() => dots(index)} key={s.id} >*/}
-               {/*    <span className={cn(styles.dots, {*/}
-               {/*        [styles.active]: slideIndex === index*/}
-               {/*    })}/>*/}
-               {/*</button>)}*/}
                <Dots slideIndex={slideIndex} dots={dots} arr={sliderTop}/>
            </div>
        </div>

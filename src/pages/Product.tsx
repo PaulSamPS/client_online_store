@@ -1,23 +1,22 @@
 import React, {useEffect, useState} from 'react'
-import {useParams} from "react-router-dom";
-import {useTypedSelector} from "../hooks/useTypedSelector";
-import {useAppDispatch} from "../hooks/useAppDispatch";
-import {getOneTv, getTv} from "../redux/actions/productAction";
+import {useParams} from 'react-router-dom'
+import {useTypedSelector} from '../hooks/useTypedSelector'
+import {useAppDispatch} from '../hooks/useAppDispatch'
+import {getOneProduct} from '../redux/actions/productAction'
+import {IProduct} from '../interfaces/product.interface'
 
 const Product = () => {
-    const oneTv = useTypedSelector(state => state.product.oneTv)
-    const [tv , setTv] = useState(null)
+    const oneProduct = useTypedSelector(state => state.product.oneProduct)
     const dispatch = useAppDispatch()
     const {id} = useParams()
 
     useEffect(() => {
-        dispatch(getOneTv(id))
+        dispatch(getOneProduct(id))
     }, [id])
 
-    // console.log(oneTv)
     return (
         <div>
-            <h1>Product {id}</h1>
+            {oneProduct.map((product: IProduct) => <h1>{product.name}</h1>)}
         </div>
     )
 }

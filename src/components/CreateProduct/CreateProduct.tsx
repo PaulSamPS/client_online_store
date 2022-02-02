@@ -1,13 +1,12 @@
-import React, {useEffect, useState} from 'react'
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {Input} from "../Input/Input";
-import {Button} from "../Button/Button";
-import { addTv} from "../../redux/actions/productAction";
-import { v4 as uuidv4 } from 'uuid';
-import {ReactComponent as RemoveIcon} from './remove.svg'
-import styles from "./CreateProduct.module.scss"
+import React, {useState, MouseEvent} from 'react'
+import {useAppDispatch} from '../../hooks/useAppDispatch'
+import {Input} from '../Input/Input'
+import {Button} from '../Button/Button'
+import { v4 as uuidv4 } from 'uuid'
+import {addProduct} from '../../redux/actions/productAction'
+import styles from './CreateProduct.module.scss'
 
-const CreateProduct = () => {
+const CreateProduct = (): JSX.Element => {
     const [name, setName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
     const [oldPrice, setOldPrice] = useState<number>()
@@ -19,21 +18,21 @@ const CreateProduct = () => {
     const [info, setInfo] = useState<any[]>([])
     const dispatch: any = useAppDispatch()
 
-    const addInfo = (e:any) => {
+    const addInfo = (e: MouseEvent) => {
         setInfo([...info,{title: '', description: '', number: uuidv4()}])
         e.preventDefault()
     }
 
-    const removeInfo = (number: any) => {
+    const removeInfo = (number: number) => {
         setInfo(info.filter(i => i.number !== number))
     }
 
-    const changeInfo = (key: any, value: any, number: any) => {
+    const changeInfo = (key: string, value: string, number: number) => {
         setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
     }
 
-    const selectFile = (e :any) => {
-        let images = []
+    const selectFile = (e: any) => {
+        let images = [] as any[]
         for (let i = 0; i < e.target.files.length; i++) {
             images.push({picture: URL.createObjectURL(e.target.files[i]), number: uuidv4()})
         }
@@ -41,7 +40,7 @@ const CreateProduct = () => {
         setFiles(e.target.files)
     }
 
-    const addProduct = (e: { preventDefault: () => void }) => {
+    const handleAddProduct = (e: { preventDefault: () => void }) => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', `${price}`)
@@ -50,7 +49,7 @@ const CreateProduct = () => {
             formData.append('img', files[i]);
         }
         formData.append('info', JSON.stringify(info))
-        dispatch(addTv(formData))
+        dispatch(addProduct(formData))
         e.preventDefault()
         setName('')
         setPrice(0)
@@ -168,7 +167,7 @@ const CreateProduct = () => {
                 </label>
             </form>
             <div className={styles.blockSubmit}>
-                <Button  className={styles.submit} appearance="primary" onClick={addProduct}>Отправить</Button>
+                <Button  className={styles.submit} appearance="primary" onClick={handleAddProduct}>Отправить</Button>
             </div>
         </div>
     )

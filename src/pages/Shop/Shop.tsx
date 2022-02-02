@@ -1,39 +1,39 @@
+import React, {useEffect} from 'react'
+import Slider from '../../components/Slider/Slider'
+import TopProduct from '../../components/TopProduct/TopProduct'
+import DayProduct from '../../components/DayProduct/DayProduct'
+import {useTypedSelector} from '../../hooks/useTypedSelector'
+import {useAppDispatch} from '../../hooks/useAppDispatch'
+import ProductCard from '../../components/ProductCard/ProductCard'
+import {getProducts} from '../../redux/actions/productAction'
+import {useLocation, useNavigate} from 'react-router-dom'
+import {PRODUCT_ROUTE} from '../../routes/constants'
+import {IBrand} from '../../interfaces/brand.interface'
+import {IProduct} from '../../interfaces/product.interface'
 import styles from './Shop.module.scss'
-import Slider from "../../components/Slider/Slider";
-import TopProduct from "../../components/TopProduct/TopProduct";
-import React, {useEffect, useState} from "react";
-import DayProduct from "../../components/DayProduct/DayProduct";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {getBrands} from "../../redux/actions/brandAction";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import { getTv} from "../../redux/actions/productAction";
-import {useLocation, useNavigate} from "react-router-dom";
-import {PRODUCT_ROUTE} from "../../routes/constants";
-import Dots from "../../components/Dots/Dots";
 
-const Shop = () => {
+const Shop = (): JSX.Element => {
     const brand = useTypedSelector(state => state.brand.brand)
-    const tv = useTypedSelector(state => state.product.tv)
+    const products = useTypedSelector(state => state.product.products)
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const {pathname} = useLocation()
+
     useEffect(() => {
-        dispatch(getTv())
+        dispatch(getProducts())
     }, [])
-    console.log(tv)
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.topBar}>
                 <Slider className={styles.slider}/>
-                <DayProduct
-                    tv={tv}/>
+                <DayProduct product={products}/>
             </div>
-            <TopProduct className={styles.topProduct} tv={tv}/>
-            {tv.map((t : any) => <ProductCard key={t.id} tv={t}/>)}
-            {brand.map((b : any) => <img key={b.id} src={`http://localhost:5000/${b.img}`} alt="12"/>)}
-            {tv.map((t: any) => <div key={t.id} className={styles.tv} onClick={() => navigate(`tv/${t.id}`)}>
-                <li>{t.name}</li>
+            <TopProduct className={styles.topProduct} product={products}/>
+            {products.map((product: IProduct) => <ProductCard key={product.id} product={product}/>)}
+            {brand.map((brand : IBrand) => <img key={brand.id} src={`http://localhost:5000/${brand.img}`} alt="12"/>)}
+            {products.map((product: IProduct) => <div key={product.id} className={styles.tv} onClick={() => navigate(`${PRODUCT_ROUTE}/${product.id}`)}>
+                <li>{product.name}</li>
             </div>)}
         </div>
     )

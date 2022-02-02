@@ -29,13 +29,14 @@
     color: var(--black);
     font-weight: 500;
     font-size: 15px;
+
     .svg {
       background-repeat: no-repeat;
       background-position: 50%;
       background-size: 16px auto;
       position: absolute;
-      left: 0;
-      top: 12px;
+      left: 5px;
+      top: 11px;
       width: 35px;
       height: 16px;
     }

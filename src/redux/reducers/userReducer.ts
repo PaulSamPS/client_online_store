@@ -1,19 +1,9 @@
-import {SET_ERROR_AUTH_MESSAGE, SET_TOKEN, SET_USER} from "../constants/constants";
-
-interface IUser {
-    userName: string
-    role: string
-    email: string
-}
+import {SET_ERROR_AUTH_MESSAGE, SET_TOKEN, SET_USER} from '../constants/constants'
+import {IUser} from '../../interfaces/user.interface'
 
 interface UserState {
     errorMessage: string
     userInfo: IUser
-}
-
-interface IAction {
-    type: string
-    payload: () => void | string
 }
 
 const initialState: UserState = {

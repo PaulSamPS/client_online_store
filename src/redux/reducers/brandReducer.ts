@@ -1,10 +1,7 @@
 import {SET_BRAND} from '../constants/constants'
+import {IReduxBrand} from '../../interfaces/brand.interface'
 
-export interface IBrand {
-    brand: any[]
-}
-
-const initialState: IBrand = {
+const initialState: IReduxBrand = {
     brand: []
 }
 

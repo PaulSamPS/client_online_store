@@ -1,18 +1,18 @@
-import React, {useState} from 'react'
-import {ReactComponent as CloseLogo} from "./close.svg";
-import {Input} from "../Input/Input";
-import {Button} from "../Button/Button";
-import {login} from "../../redux/actions/authAction";
-import {useAppDispatch} from "../../hooks/useAppDispatch";
-import {ModalLoginProps} from "./ModalLogin.props";
-import styles from './ModalLogin.module.scss';
+import React, {useState, MouseEvent} from 'react'
+import {ReactComponent as CloseLogo} from './close.svg'
+import {Input} from '../Input/Input'
+import {Button} from '../Button/Button'
+import {login} from '../../redux/actions/authAction'
+import {useAppDispatch} from '../../hooks/useAppDispatch'
+import {ModalLoginProps} from './ModalLogin.props'
+import styles from './ModalLogin.module.scss'
 
-const ModalLogin = ({closeModal}: ModalLoginProps) => {
+const ModalLogin = ({closeModal}: ModalLoginProps): JSX.Element => {
     const dispatch = useAppDispatch()
     const [userName, setLogin] = useState('')
     const [password, setPassword] = useState('')
 
-    const auth = (e: { preventDefault: () => void }) => {
+    const auth = (e: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(login({userName,password}))
         closeModal()
@@ -20,7 +20,7 @@ const ModalLogin = ({closeModal}: ModalLoginProps) => {
 
     return (
         <div className={styles.overlay} onClick={closeModal}>
-            <form className={styles.content} onClick={(e) => e.stopPropagation()}>
+            <form className={styles.content} onClick={(e: MouseEvent<HTMLButtonElement> | MouseEvent<HTMLFormElement>) => e.stopPropagation()}>
                 <h2>Вход или регистрация</h2>
                 <CloseLogo className={styles.close} onClick={closeModal}/>
                 <Input

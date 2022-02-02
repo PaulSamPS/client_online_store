@@ -1,6 +1,6 @@
 import {DetailedHTMLProps, HTMLAttributes} from 'react'
-import {ITvs} from "../DayProduct/DayProduct.props";
+import {IProduct} from '../../interfaces/product.interface'
 
 export interface TopProductProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
-    tv: ITvs[]
+    product: IProduct[]
 }

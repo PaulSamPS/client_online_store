@@ -1,16 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import styles from "./Dots.module.scss";
-import cn from "classnames";
-import {DotsProps} from "./Dots.props";
+import React, {useEffect, useState} from 'react'
+import cn from 'classnames'
+import {DotsProps} from './Dots.props'
+import styles from './Dots.module.scss'
 
-const Dots = ({slideIndex,appearance,dots,arr,className,...props}: DotsProps) => {
+const Dots = ({slideIndex,appearance,dots,arr,className,...props}: DotsProps): JSX.Element => {
     const [dotsArray, setDotsArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
+
     useEffect(() => {
         constructDots(slideIndex)
     },[slideIndex])
 
     const constructDots = (slideIndex: number) => {
-        const updateDots = arr.map((s: JSX.Element,index) => {
+        const updateDots = arr.map((dot: JSX.Element,index) => {
             return (
                 <button onClick={() => dots(index)}>
                    <span className={cn(styles.dots, {
@@ -25,7 +26,7 @@ const Dots = ({slideIndex,appearance,dots,arr,className,...props}: DotsProps) =>
 
     return (
         <div {...props} className={cn(styles.dots, className)}>
-            {dotsArray.map((s, i) => <span key={i}>{s}</span>)}
+            {dotsArray.map((dots, index) => <span key={index}>{dots}</span>)}
         </div>
     );
 };

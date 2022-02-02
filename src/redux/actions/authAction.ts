@@ -1,18 +1,9 @@
 import {Dispatch} from 'redux'
-import axios from 'axios'
 import jwtDecode from 'jwt-decode'
-import {SET_ACCOUNT_NAME, SET_AUTH, SET_ERROR_AUTH_MESSAGE, SET_TOKEN, SET_USER} from '../constants/constants'
-import {$host} from "../../http";
+import {SET_ERROR_AUTH_MESSAGE, SET_TOKEN, SET_USER} from '../constants/constants'
+import {$host} from '../../http'
+import {IAuthForm, IAuthSentResponse} from '../../interfaces/auth.interface'
 
-export interface IAuthForm {
-    password: string
-    userName: string
-}
-
-export interface IAuthSentResponse {
-    message: string
-    token: string
-}
 
 export const login = ({password,userName}: IAuthForm): any => {
     return async (dispatch: Dispatch) => {
@@ -33,5 +24,4 @@ export const registration = ({password,userName}: IAuthForm): any => {
 }
 
 export const setUser = (user: {}) => ({type: SET_USER, payload: user})
-export const setToken = (token: string) => ({type: SET_TOKEN, payload: token})
 export const setErrorAuthMessage = (message: string) => ({type: SET_ERROR_AUTH_MESSAGE, payload: message})

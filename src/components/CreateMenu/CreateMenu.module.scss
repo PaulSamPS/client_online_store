@@ -1,0 +1,42 @@
+.menuBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  label {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 120px 1fr;
+  }
+
+  .inputFile {
+    position: relative;
+    .file {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+    .inputBtn {
+      display: inline-block;
+
+      box-sizing: border-box;
+      padding: 10px 30px;
+      width: 227px;
+      background-color: var(--primary);
+      color: var(--white);
+
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+
+      border: none;
+      border-radius: 5px;
+
+      font-size: 14px;
+    }
+  }
+}
+
+.blockSubmit {
+  margin-top: 20px;
+}
