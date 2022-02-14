@@ -9,7 +9,7 @@ import styles from './CreateProduct.module.scss'
 const CreateProduct = (): JSX.Element => {
     const [name, setName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
-    const [oldPrice, setOldPrice] = useState<number>()
+    const [oldPrice, setOldPrice] = useState<number>(0)
     const [brand, setBrand] = useState(null)
     const [type, setType] = useState(null)
     const [addOldPrice, setAddOldPrice] = useState<boolean>(false)
@@ -51,11 +51,6 @@ const CreateProduct = (): JSX.Element => {
         formData.append('info', JSON.stringify(info))
         dispatch(addProduct(formData))
         e.preventDefault()
-        setName('')
-        setPrice(0)
-        setOldPrice(0)
-        setFiles([])
-        setInfo([])
     }
 
     const handleAddOldPrice = () => {

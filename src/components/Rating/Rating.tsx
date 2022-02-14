@@ -4,7 +4,7 @@ import {ReactComponent as StarIcon} from './star.svg'
 import cn from 'classnames'
 import styles from './Rating.module.scss'
 
-const Rating = ({isEditable = false, rating, setRating, className, ...props}: RatingProps): JSX.Element => {
+const Rating = ({isEditable = false, rating, isFully = false, setRating, className, ...props}: RatingProps): JSX.Element => {
     const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>))
 
     useEffect(() => {
@@ -60,8 +60,8 @@ const Rating = ({isEditable = false, rating, setRating, className, ...props}: Ra
                     ratingArray.map((rating,index) => <span key={index}>{rating}</span>)
                 :
                     <div className={styles.ratingBlock}>
-                        <span>{ratingArray[0]}</span>
-                        <span>{rating}</span>
+                        <span>{isFully ? ratingArray : ratingArray[0]}</span>
+                        {!isFully ? <span>{rating}</span> : ''}
                     </div>
             }
         </div>

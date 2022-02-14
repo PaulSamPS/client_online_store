@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Link, useNavigate} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import cn from 'classnames'
 import {SliderProps} from './Slider.props'
 import Arrow from '../Arrow/Arrow'
@@ -29,13 +29,8 @@ const Slider = ({className}:SliderProps) => {
         return () => clearInterval(interval)
     }, [slideIndex])
 
-    if (slideIndex === sliderTop.length) {
-        setSlideIndex(0)
-        setOffset(0)
-    }
-
     const right = () => {
-        if (slideIndex === sliderTop.length) {
+        if (slideIndex === sliderTop.length - 1) {
             setSlideIndex(0)
             setOffset(0)
         } else {
@@ -48,6 +43,7 @@ const Slider = ({className}:SliderProps) => {
 
     const left = () => {
         setOffset((currentOffset: number) => {
+            console.log(currentOffset)
             return Math.min(currentOffset + IMG_WIDTH, 0)
         })
         setSlideIndex(slideIndex === 0 ? 0 : slideIndex - 1)
@@ -62,7 +58,7 @@ const Slider = ({className}:SliderProps) => {
        <div className={styles.sliderBlock}>
            <h2>Новые акции</h2>
            <div className={cn(styles.sliderWrapper, className)}>
-               {sliderTop.map((slide: any, index) =>
+               {sliderTop.map((slide: any) =>
                    <div
                        className={styles.slider}
                        key={slide.id}

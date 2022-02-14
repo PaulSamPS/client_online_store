@@ -1,15 +1,13 @@
 import React from 'react'
-import {Input} from "../../components/Input/Input";
-import {Button} from "../../components/Button/Button";
-import {ReactComponent as UserLogo} from "./user.svg";
-import {ADMIN_ROUTE, CART_ROUTE, SHOP_ROUTE} from "../../routes/constants";
-import {ReactComponent as CartLogo} from "./cart.svg";
-import {ReactComponent as SearchLogo} from "./search.svg";
-import {ReactComponent as LogoIcon} from "./logo.svg";
-import {HeaderProps} from "./Header.props";
-import {useTypedSelector} from "../../hooks/useTypedSelector";
-import {useNavigate} from "react-router-dom";
-import styles from './Header.module.scss';
+import {Input} from '../../components/Input/Input'
+import {Button} from '../../components/Button/Button'
+import {ReactComponent as UserLogo} from './user.svg'
+import {ReactComponent as CartLogo} from './cart.svg'
+import {ReactComponent as SearchLogo} from './search.svg'
+import {HeaderProps} from './Header.props'
+import {useTypedSelector} from '../../hooks/useTypedSelector'
+import {useNavigate} from 'react-router-dom'
+import styles from './Header.module.scss'
 
 const Header = ({openModal}: HeaderProps) => {
     const name = useTypedSelector(state => state.user.userInfo)
@@ -22,7 +20,7 @@ const Header = ({openModal}: HeaderProps) => {
 
     const logout = () => {
         localStorage.clear()
-        navigate(SHOP_ROUTE)
+        navigate('/')
     }
 
     return (
@@ -31,7 +29,7 @@ const Header = ({openModal}: HeaderProps) => {
                 src='https://static.eldorado.ru/espa/1.35.17-WtslTG2khlq9S4hFe2rsX/static_spa/assets/logo.0.107e1872.svg'
                 alt='logo'
                 className={styles.logo}
-                onClick={() => navigate(SHOP_ROUTE)}
+                onClick={() => navigate('/')}
             />
             <div className={styles.search}>
                 <Input
@@ -57,11 +55,11 @@ const Header = ({openModal}: HeaderProps) => {
                             <UserLogo/>
                             <p>{name.userName}</p>
                         </div>
-                        {userRole && <span onClick={() => navigate(ADMIN_ROUTE)} className={styles.logout}>Админ</span>}
+                        {userRole && <span onClick={() => navigate('admin')} className={styles.logout}>Админ</span>}
                         <span onClick={logout} className={styles.logout}>Выйти</span>
                     </div>
             }
-            <div className={styles.cart} onClick={() => navigate(CART_ROUTE)}>
+            <div className={styles.cart} onClick={() => navigate('cart')}>
                 <CartLogo/>
                 <p>Корзина</p>
             </div>

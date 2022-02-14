@@ -5,12 +5,14 @@ import {priceRu} from '../../helpers/helpers'
 import {Button} from '../Button/Button'
 import {ReactComponent as FavoriteIconRed} from '../TopProduct/favoriteRed.svg'
 import {ReactComponent as FavoriteIcon} from '../TopProduct/favorite.svg'
+import {ReactComponent as CartLogo} from '../DayProduct/cart.svg'
 import {CardItemProps} from './CardItem.props'
 import cn from 'classnames'
-import {ReactComponent as CartLogo} from '../DayProduct/cart.svg'
+import {Link} from 'react-router-dom'
 import styles from './CardItem.module.scss'
 
-const CardItem = ({className,product,appearance,offset,...props}: CardItemProps): JSX.Element => {
+const
+    CardItem = ({className,product,appearance,offset,...props}: CardItemProps): JSX.Element => {
     const [rating, setRating] = useState<number>(4)
     const [review, setReview] = useState<number>(4)
     const [like, setLike] = useState<boolean>(false)
@@ -29,7 +31,9 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
                         <Rating rating={rating} isEditable={false}/>
                         <Review review={review}/>
                     </div>
-                    <span className={styles.name}>{product.name}</span>
+                    <Link to={`product/${product.id}`}>
+                        <span className={styles.name}>{product.name}</span>
+                    </Link>
                     <span className={styles.price}>{priceRu(product.price)}</span>
                     <div className={styles.bottom}>
                         <Button appearance='primary' className={styles.btn}>В корзину</Button>
@@ -55,7 +59,9 @@ const CardItem = ({className,product,appearance,offset,...props}: CardItemProps)
                         <Rating rating={rating} isEditable={false}/>
                         <Review review={review}/>
                     </div>
-                    <span className={styles.name}>{product.name}</span>
+                    <Link to={`product/${product.id}`}>
+                        <span className={styles.name}>{product.name}</span>
+                    </Link>
                     <div className={styles.sale}>
                         <span className={styles.oldPrice}>{priceRu(product.oldPrice)}</span>
                         <span className={styles.discount}>-{product.oldPrice! - product.price}</span>

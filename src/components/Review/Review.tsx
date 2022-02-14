@@ -12,6 +12,9 @@ const Review = ({review, children,className,...props}: ReviewProps): JSX.Element
                 review <= 0
                     ?
                     <span>Добавить отзыв</span>
+                    : review === 1
+                    ?
+                    <span>{review} отзыв</span>
                     :
                     <span>{review} отзыва</span>
             }

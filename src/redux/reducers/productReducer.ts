@@ -3,7 +3,7 @@ import {IProduct} from '../../interfaces/product.interface'
 
 interface IReduxProduct {
     products: IProduct[]
-    oneProduct: any []
+    oneProduct: IProduct[]
 }
 
 const initialState: IReduxProduct = {
@@ -16,8 +16,7 @@ export const productReducer = (state = initialState, action: any) => {
         case SET_PRODUCTS:
             return {
                 ...state,
-                products: action.payload,
-                oneProduct: []
+                products: action.payload
             }
         case SET_ONE_PRODUCT:
             return {

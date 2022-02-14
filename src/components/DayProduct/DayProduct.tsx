@@ -3,8 +3,8 @@ import Arrow from '../Arrow/Arrow'
 import Dots from '../Dots/Dots'
 import CardItem from '../CardItem/CardItem'
 import {DayProductProps} from './DayProduct.props'
+import {IProduct} from '../../interfaces/product.interface'
 import styles from './DayProduct.module.scss'
-import {IProduct} from "../../interfaces/product.interface";
 
 
 const DayProduct = ({product}: DayProductProps): JSX.Element => {

@@ -9,6 +9,7 @@ import {ReactComponent as FavoriteIcon} from '../TopProduct/favorite.svg'
 import {ProductCardProps} from './ProductCard.props'
 import {IInfo} from '../../interfaces/productInfo.interface'
 import styles from './ProductCard.module.scss'
+import {Link} from "react-router-dom";
 
 const ProductCard = ({product}: ProductCardProps): JSX.Element => {
     const [review, setReview] = useState<number>(4)
@@ -69,10 +70,12 @@ const ProductCard = ({product}: ProductCardProps): JSX.Element => {
         <div className={styles.productCard}>
             <div className={styles.img} onMouseLeave={mouseLeave} onMouseMove={(e: MouseEvent<HTMLDivElement>) => mouseMove(e)}>
                 <div className={styles.imgSlide} ref={imgRef as unknown as React.RefObject<HTMLImageElement>}>
-                    <img
-                        src={`http://localhost:5000/${JSON.parse(product.img)[slideIndex]?.fileName}`}
-                        alt="product"
-                    />
+                    <Link to={`product/${product.id}`}>
+                        <img
+                            src={`http://localhost:5000/${JSON.parse(product.img)[slideIndex]?.fileName}`}
+                            alt="product"
+                        />
+                    </Link>
                 </div>
                 {product.info.map((product: any) => product.title === "Smart TV" &&
                     <div className={styles.smart} key={product.id}>
@@ -86,7 +89,9 @@ const ProductCard = ({product}: ProductCardProps): JSX.Element => {
                     <Rating rating={product.rating} isEditable={false}/>
                     <Review review={review}/>
                 </div>
-                <span className={styles.name}>{product.name}</span>
+                <Link to={`product/${product.id}`}>
+                    <span className={styles.name}>{product.name}</span>
+                </Link>
             </div>
             <div className={styles.infoBlock}>
                 {product.info.slice(0, view ? 10 : 6).map((info: IInfo) =>
