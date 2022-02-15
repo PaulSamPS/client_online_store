@@ -21,10 +21,15 @@ const Slider = ({className}:SliderProps) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setOffset((currentOffset: number) => {
-                return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (sliderTop.length - 1)))
-            })
-            setSlideIndex(slideIndex => slideIndex +1)
+            if (slideIndex === sliderTop.length - 1) {
+                setSlideIndex(0)
+                setOffset(0)
+            } else {
+                setOffset((currentOffset: number) => {
+                    return Math.max(currentOffset - IMG_WIDTH, - (IMG_WIDTH * (sliderTop.length)))
+                })
+                setSlideIndex(slideIndex => slideIndex +1)
+            }
         }, 5000)
         return () => clearInterval(interval)
     }, [slideIndex])
@@ -72,7 +77,7 @@ const Slider = ({className}:SliderProps) => {
                <Arrow appearance='left' background='white' onClick={left}/>
                <Arrow appearance='right' background='white' onClick={right}/>
            </div>
-           <div className={styles.bl}>
+           <div className={styles.blockDots}>
                <Dots slideIndex={slideIndex} dots={dots} arr={sliderTop}/>
            </div>
        </div>

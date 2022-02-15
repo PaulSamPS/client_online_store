@@ -147,6 +147,12 @@
       gap: 20px;
       margin-top: 40px;
 
+      .activeNav {
+        background: var(--primary);
+        color: var(--white);
+        border-radius: 5px;
+      }
+
       .nav {
         font-weight: 700;
         width: 175px;

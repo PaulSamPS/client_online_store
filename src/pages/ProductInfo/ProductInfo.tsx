@@ -24,7 +24,7 @@ const ProductInfo = () => {
     const [review, setReview] = useState<number>(1)
     const [rating, setRating] = useState<number>(5)
     const [createReview, setCreateReview] = useState<boolean>(false)
-    const image = JSON.parse(product.img)
+    const image = product.img && JSON.parse(product.img)
     const IMG_WIDTH = 380
     const IMG_WIDTH_PREVIEW = 62.5
 
@@ -52,7 +52,6 @@ const ProductInfo = () => {
             })
         }
     }
-    console.log(product.info)
 
     const left = () => {
         setOffset((currentOffset: number) => {
@@ -70,8 +69,6 @@ const ProductInfo = () => {
         setOffsetPreview(-IMG_WIDTH_PREVIEW)
     }
 
-    console.log(itemIndex)
-
     return (
         <div className={styles.productInfo}>
             <h1 className={styles.title}>{product.name}</h1>
@@ -82,7 +79,7 @@ const ProductInfo = () => {
             <div className={styles.productBlock}>
                 <div className={styles.carousel}>
                     <div className={styles.sliderWrapper}>
-                        {JSON.parse(product.img).map((image: any) =>
+                        {product?.img && JSON.parse(product.img).map((image: any) =>
                             <div
                                 key={image.fileName}
                                 className={styles.slider}
@@ -94,7 +91,7 @@ const ProductInfo = () => {
                     <Arrow appearance='left' background='none' onClick={left} className={styles.leftTop}/>
                     <Arrow appearance='right' background='none' onClick={right} className={styles.rightTop}/>
                     <div className={styles.previewWrapper}>
-                        {JSON.parse(product.img).map((image: any, index: number) =>
+                        {product?.img && JSON.parse(product.img).map((image: any, index: number) =>
                             <div
                                 key={image.fileName}
                                 onClick={() => handleClick(index)}
@@ -119,54 +116,65 @@ const ProductInfo = () => {
                 </div>
                 <div className={styles.navBlock}>
                     {info.map((i: any, index: number) =>
-                        <Button onClick={() => setItemIndex(index)} className={styles.nav} appearance='ghost'>{i.name}</Button>
+                        <Button key={i.id} onClick={() => setItemIndex(index)} className={cn(styles.nav, {
+                            [styles.activeNav]: itemIndex === index
+                        })} appearance='ghost'>{i.name}</Button>
                     )}
                 </div>
             </div>
-            <h2 className={styles.infoTitle}>Основные характеристики</h2>
-            <div className={styles.info}>
-                {product.info.map((i: any) =>
-                  <>
-                      <span>{i.title}</span>
-                      <span>{i.description}</span>
-                  </>
-                )}
-            </div>
-            <Button className={styles.btnReview} appearance='primary' onClick={() => setCreateReview(!createReview)}>Написать отзыв</Button>
-            <div className={styles.reviewBlock}>
+            {itemIndex === 0 &&
                 <div>
-                    <span className={styles.name}>User</span>
-                </div>
-                <div className={styles.review}>
-                    <Rating rating={rating} isFully={true}/>
-                    <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cum delectus expedita illum maxime minus nam numquam odit omnis porro qui quos sed, similique. Ab consectetur facilis iste numquam odit?</span>
-                </div>
-            </div>
-            {createReview &&
-                <div className={styles.addReview}>
-                    <h1>Написать отзыв</h1>
-                    <div className={styles.label}>
-                        <label htmlFor='name'>
-                            Ваше имя:
-                            <Input
-                                name='name'
-                            />
-                        </label>
+                    <h2 className={styles.infoTitle}>Основные характеристики</h2>
+                    <div className={styles.info}>
+                        {product.info && product.info.map((i: any) =>
+                            <div key={i.id}>
+                                <span>{i.title}</span>
+                                <span>{i.description}</span>
+                            </div>
+                        )}
                     </div>
-                    <div className={styles.label}>
-                        <label htmlFor='city'>
-                            Город:
-                            <Input
-                                name='city'
-                            />
-                        </label>
+                </div>
+            }
+            {itemIndex === 1 &&
+                <div>
+                    <h2 className={styles.infoTitle}>Отзывы</h2>
+                    <Button className={styles.btnReview} appearance='primary' onClick={() => setCreateReview(!createReview)}>Написать отзыв</Button>
+                    <div className={styles.reviewBlock}>
+                        <div>
+                            <span className={styles.name}>User</span>
+                        </div>
+                        <div className={styles.review}>
+                            <Rating rating={rating} isFully={true}/>
+                            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cum delectus expedita illum maxime minus nam numquam odit omnis porro qui quos sed, similique. Ab consectetur facilis iste numquam odit?</span>
+                        </div>
                     </div>
-                    <Rating rating={rating} isEditable={true} setRating={setRating} className={styles.ratingModal}/>
-                    <label htmlFor='textarea'>
-                        Отзыв:
-                        <Textarea className={styles.textarea} name='textarea'/>
-                    </label>
-                    <Button className={styles.sendReview} appearance='primary'>Отправить</Button>
+                    {createReview &&
+                        <div className={styles.addReview}>
+                            <h1>Написать отзыв</h1>
+                            <div className={styles.label}>
+                                <label htmlFor='name'>
+                                    Ваше имя:
+                                    <Input
+                                        name='name'
+                                    />
+                                </label>
+                            </div>
+                            <div className={styles.label}>
+                                <label htmlFor='city'>
+                                    Город:
+                                    <Input
+                                        name='city'
+                                    />
+                                </label>
+                            </div>
+                            <Rating rating={rating} isEditable={true} setRating={setRating} className={styles.ratingModal}/>
+                            <label htmlFor='textarea'>
+                                Отзыв:
+                                <Textarea className={styles.textarea} name='textarea'/>
+                            </label>
+                            <Button className={styles.sendReview} appearance='primary'>Отправить</Button>
+                        </div>
+                    }
                 </div>
             }
         </div>

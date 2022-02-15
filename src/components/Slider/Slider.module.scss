@@ -40,11 +40,12 @@
     }
   }
 
-  .bl {
+  .blockDots {
     display: flex;
     bottom: -30px;
     right: 270px;
-    position: absolute;
+    position: unset;
+    justify-content: center;
     align-items: center;
     height: 30px;
   }

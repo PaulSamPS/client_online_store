@@ -23,4 +23,4 @@ export const addProduct = async (formData: any) => {
 }
 
 export const setProducts = (products: IProduct[]) => ({type: SET_PRODUCTS, payload: products})
-export const setOneProduct = (oneProduct: IProduct[]) => ({type: SET_ONE_PRODUCT, payload: oneProduct})
+export const setOneProduct = (oneProduct: {}) => ({type: SET_ONE_PRODUCT, payload: oneProduct})

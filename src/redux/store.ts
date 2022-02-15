@@ -8,6 +8,7 @@ import {productReducer} from './reducers/productReducer'
 import {typeReducer} from './reducers/typeReducer'
 import {brandReducer} from './reducers/brandReducer'
 import {menuReducer} from './reducers/menuReducer'
+import {dayProductReducer} from './reducers/dayProducts.reducer'
 
 const persistConfig = {
     key: 'root',
@@ -17,6 +18,7 @@ const persistConfig = {
 export const rootReducers = combineReducers({
     user: userReducer,
     product: productReducer,
+    dayProducts: dayProductReducer,
     type: typeReducer,
     brand: brandReducer,
     menu: menuReducer

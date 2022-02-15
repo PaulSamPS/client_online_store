@@ -9,7 +9,7 @@ import styles from './CreateProduct.module.scss'
 const CreateProduct = (): JSX.Element => {
     const [name, setName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
-    const [oldPrice, setOldPrice] = useState<number>(0)
+    const [oldPrice, setOldPrice] = useState<number | undefined>(undefined)
     const [brand, setBrand] = useState(null)
     const [type, setType] = useState(null)
     const [addOldPrice, setAddOldPrice] = useState<boolean>(false)
@@ -118,7 +118,7 @@ const CreateProduct = (): JSX.Element => {
                         </label>
                     </label>
                 </div>
-                {info.map((i, index) =>
+                {info.map((i) =>
                     <div className={styles.description} key={i.number}>
                         <div className={styles.inputBlock}>
                             <label htmlFor="title">

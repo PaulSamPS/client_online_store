@@ -2,7 +2,6 @@ import Slider from '../../components/Slider/Slider'
 import TopProduct from '../../components/TopProduct/TopProduct'
 import DayProduct from '../../components/DayProduct/DayProduct'
 import ProductList from '../ProductList/ProductList'
-import Timer from '../../components/Timer/Timer'
 import {IBrand} from '../../interfaces/brand.interface'
 import {ShopProps} from './Shop.props'
 import styles from './Shop.module.scss'
@@ -11,7 +10,6 @@ const Shop = ({products,brand}: ShopProps): JSX.Element => {
 
     return (
         <div className={styles.wrapper}>
-            <Timer />
             <div className={styles.topBar}>
                 <Slider className={styles.slider}/>
                 <DayProduct product={products}/>

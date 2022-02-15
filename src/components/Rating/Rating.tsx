@@ -15,6 +15,7 @@ const Rating = ({isEditable = false, rating, isFully = false, setRating, classNa
         const updatedArray = ratingArray.map((r: JSX.Element, index: number) => {
             return (
                 <span
+                    key={index}
                     className={cn(styles.star, {
                         [styles.filled]: index < currentRating,
                         [styles.editable]: isEditable
@@ -60,7 +61,7 @@ const Rating = ({isEditable = false, rating, isFully = false, setRating, classNa
                     ratingArray.map((rating,index) => <span key={index}>{rating}</span>)
                 :
                     <div className={styles.ratingBlock}>
-                        <span>{isFully ? ratingArray : ratingArray[0]}</span>
+                        {isFully ? ratingArray.map((r,index)=> <span key={index}>{r}</span>) : ratingArray[0]}
                         {!isFully ? <span>{rating}</span> : ''}
                     </div>
             }
